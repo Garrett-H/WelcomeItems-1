@@ -10,6 +10,7 @@ namespace WelcomeItems
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to the Inventory Manager!");
             //Starts & opens menu options
             List<Item> manager1 = new List<Item>();
             int action = 0;
@@ -30,6 +31,9 @@ namespace WelcomeItems
                 Console.WriteLine("Enter next action here: ");
                 action = Convert.ToInt32(Console.ReadLine());
             }
+
+            Console.WriteLine("Thank you for using the Inventory Manager! \nPress enter to exit.");
+            Console.Read();
         }
 
         static void MenuOpener(int determiner)
@@ -46,21 +50,6 @@ namespace WelcomeItems
             Console.WriteLine("5. Get information on and item");
             Console.WriteLine("6. Exit program");
         }
-
-        /*
-        static void MenuChoice(int choice)
-        {
-            while(choice != 5)
-            {
-                ActionTaken(choice);
-                Console.WriteLine("\n");
-
-                MenuOpener(choice);
-                Console.WriteLine("Enter next action here: ");
-                choice = Convert.ToInt32(Console.ReadLine());
-            }
-        }
-        */
 
         static void ActionTaken(int choice, List<Item> manager1)
         {
@@ -170,6 +159,7 @@ namespace WelcomeItems
                 case 5:  //Info
                     {
                         //1. find item
+
                         Console.WriteLine("What is the ID of the item: ");
                         int itemID = Convert.ToInt32(Console.ReadLine());
                         //2. check if item extists
@@ -181,10 +171,6 @@ namespace WelcomeItems
                         }
                         //3. send info
                         manager1[itemID - 1].Info(0);
-                        break;
-                    }
-                case 6:
-                    {
                         break;
                     }
                 default:
