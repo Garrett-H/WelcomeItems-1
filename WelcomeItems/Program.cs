@@ -10,7 +10,6 @@ namespace WelcomeItems
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the Inventory Manager!");
             //Starts & opens menu options
             List<Item> manager1 = new List<Item>();
             int action = 0;
@@ -40,7 +39,7 @@ namespace WelcomeItems
         {
             if (determiner == 0)
             {
-                Console.WriteLine("Welcome to the Pet Manager!");
+                Console.WriteLine("Welcome to the Inventory Manager!");
             }
             Console.WriteLine("Please choose an action to make: ");
             Console.WriteLine("1. Add an item to inventory");
@@ -78,7 +77,7 @@ namespace WelcomeItems
 
                                 //making book
                                 manager1.Add(new Book(title, copies));
-                                Console.WriteLine("\n{0} {1} has been add to the inventory", copies, title);
+                                Console.WriteLine("\n{0} copies of {1} has been added to the inventory", copies, title);
                             }
                             else if (option == 2)  //Movie
                             {
@@ -90,7 +89,7 @@ namespace WelcomeItems
 
                                 //making movie
                                 manager1.Add(new Movie(title, copies));
-                                Console.WriteLine("\n{0} {1} has been add to the inventory", copies, title);
+                                Console.WriteLine("\n{0} discs of {1} has been added to the inventory", copies, title);
                             }
                             else if (option == 3)
                             {
@@ -101,6 +100,7 @@ namespace WelcomeItems
 
                                 //making potion
                                 manager1.Add(new Potions(title, copies));
+                                Console.WriteLine("\n{0} bottles of {1} has been added to the inventory", copies, title);
                             }
                         }
                         break;
@@ -158,19 +158,33 @@ namespace WelcomeItems
                     }
                 case 5:  //Info
                     {
-                        //1. find item
-
-                        Console.WriteLine("What is the ID of the item: ");
-                        int itemID = Convert.ToInt32(Console.ReadLine());
-                        //2. check if item extists
-                        while ((itemID > manager1.Count) || (itemID < 1))
+                        //1. how many to display
+                        Console.WriteLine("Would you like to view all inventory(y/n): ");
+                        char viewAll = Convert.ToChar(Console.ReadLine());
+                        if (viewAll == 'n')
                         {
-                            Console.WriteLine("Sorry that is not an ID in inventory.");
-                            Console.Write("Please input a valid ID: ");
-                            itemID = Convert.ToInt32(Console.ReadLine());
+                            //2. find item
+                            Console.WriteLine("What is the ID of the item: ");
+                            int itemID = Convert.ToInt32(Console.ReadLine());
+                            //2a. check if item extists
+                            while ((itemID > manager1.Count) || (itemID < 1))
+                            {
+                                Console.WriteLine("Sorry that is not an ID in inventory.");
+                                Console.Write("Please input a valid ID: ");
+                                itemID = Convert.ToInt32(Console.ReadLine());
+                            }
+                            manager1[itemID - 1].Info(0);
+                        }
+                        else if(viewAll == 'y')
+                        {
+                            foreach (Item it in manager1)
+                            {
+                                Console.WriteLine();
+                                it.Info(0);
+                            }
                         }
                         //3. send info
-                        manager1[itemID - 1].Info(0);
+
                         break;
                     }
                 default:
