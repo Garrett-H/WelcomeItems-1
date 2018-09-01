@@ -15,13 +15,6 @@ namespace WelcomeItems
 
         //public functions
         //contructors
-        public Item()
-        {
-            Name = "Defaulter";
-            Type = "Default Item";
-            Number = 10;
-            Console.WriteLine("Default's set.");
-        }
         public Item(string Title, string Typeset, int Supply)
         {
             Name = Title;
@@ -33,23 +26,22 @@ namespace WelcomeItems
         public abstract void Restock();
         public abstract void Sell();
         public abstract void Lost();
-        public abstract void Info();
+        public abstract void Info(int which);
     }
 
     class Book : Item
     {
-        Book() : base("Bookster", "Book", 7) { }
-        Book(string Title, int Supply) : base(Title, "Book", Supply) { }
+        public Book(string Title, int Supply) : base(Title, "Book", Supply) { }
 
         public override void Restock()
         {
             int restocking;
             //checking amount to add to stock
-            Console.WriteLine("{0} has currently {1} in stock.", Name, Number);
-            Console.WriteLine("How many of '{0}' would you like to order?", Name);
+            Console.WriteLine("{0} has currently {1} copies in stock.", Name, Number);
+            Console.WriteLine("How many of '{0}' would you like to be printed?", Name);
             restocking = Convert.ToInt32(Console.ReadLine());
             //checking if amount is positive
-            if(restocking >= 0)
+            if (restocking >= 0)
             {
                 Number += restocking;
             }
@@ -57,6 +49,7 @@ namespace WelcomeItems
             {
                 Console.WriteLine("Sorry that is not a positive number to add");
             }
+            Console.WriteLine("The item now has {0} copies left in stock.", Number);
         }
 
         public override void Sell()
@@ -75,7 +68,7 @@ namespace WelcomeItems
         }
 
         //may use for all classes depending
-        static int SellingNumber(int num)
+        int SellingNumber(int num)
         {
             //See how many they want
             int stock;
@@ -119,24 +112,30 @@ namespace WelcomeItems
             Console.WriteLine("We have {0} of {1} left in inventory.", Number, Name);
         }
 
-        public override void Info()
+        public override void Info(int which)
         {
-            Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
+            if(which == 0)
+            {
+                Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
+            }
+            else
+            {
+                Console.WriteLine("{0} : {1}", Name, Number);
+            }
         }
     }
 
     class Movie : Item
     {
         //contructors
-        Movie() : base("The Movieing 2: Electric Boogaloo", "Movie", 5) { }
-        Movie(string Title, int Supply) : base(Title, "Movie", Supply) { }
+        public Movie(string Title, int Supply) : base(Title, "Movie", Supply) { }
 
         public override void Restock()
         {
             int restocking;
             //checking amount to add to stock
-            Console.WriteLine("{0} has currently {1} in stock.", Name, Number);
-            Console.WriteLine("How many of '{0}' would you like to order?", Name);
+            Console.WriteLine("{0} has currently {1} discs in stock.", Name, Number);
+            Console.WriteLine("How many of '{0}' would you like to burn?", Name);
             restocking = Convert.ToInt32(Console.ReadLine());
             //checking if amount is positive
             if (restocking >= 0)
@@ -147,6 +146,7 @@ namespace WelcomeItems
             {
                 Console.WriteLine("Sorry that is not a positive number to add");
             }
+            Console.WriteLine("The item now has {0} discs left in stock.", Number);
         }
 
         public override void Sell()
@@ -154,7 +154,7 @@ namespace WelcomeItems
             //1st check if any are in stock
             if (Number < 1)
             {
-                Console.WriteLine("Sorry! This book is out of stock right now.");
+                Console.WriteLine("Sorry! This movie is out of stock right now.");
             }
             else
             {
@@ -165,14 +165,14 @@ namespace WelcomeItems
         }
 
         //may use for all classes depending
-        static int SellingNumber(int num)
+        int SellingNumber(int num)
         {
             //See how many they want
             int stock;
-            Console.WriteLine("That book is in stock. We have {0} in stock.", num);
+            Console.WriteLine("That movie is in stock. We have {0} in stock.", num);
             Console.WriteLine("How many are being sold?:");
             stock = Convert.ToInt32(Console.ReadLine());
-
+            
             //check if the # is in stock
             if (stock > num)  //if it isn't
             {
@@ -208,23 +208,28 @@ namespace WelcomeItems
             Console.WriteLine("We have {0} of {1} left in inventory.", Number, Name);
         }
 
-        public override void Info()
+        public override void Info(int which)
         {
-            Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
+            if (which == 0)
+            {
+                Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
+            }
+            else
+            {
+                Console.WriteLine("{0} : {1}", Name, Number);
+            }
         }
     }
-
     class Potions : Item
     {
-        Potions() : base("Alduin", "Potions", 5000) { }
-        Potions(string Title, int Supply) : base(Title, "Potions", Supply) { }
+        public Potions(string Title, int Supply) : base(Title, "Potions", Supply) { }
 
         public override void Restock()
         {
             int restocking;
             //checking amount to add to stock
-            Console.WriteLine("{0} has currently {1} in stock.", Name, Number);
-            Console.WriteLine("How many of '{0}' would you like to order?", Name);
+            Console.WriteLine("{0} has currently {1} bottles in stock.", Name, Number);
+            Console.WriteLine("How many of '{0}' would you like to magically order?", Name);
             restocking = Convert.ToInt32(Console.ReadLine());
             //checking if amount is positive
             if (restocking >= 0)
@@ -235,6 +240,7 @@ namespace WelcomeItems
             {
                 Console.WriteLine("Sorry that is not a positive number to add");
             }
+            Console.WriteLine("The item now has {0} bottles left in stock.", Number);
         }
 
         public override void Sell()
@@ -242,7 +248,7 @@ namespace WelcomeItems
             //1st check if any are in stock
             if (Number < 1)
             {
-                Console.WriteLine("Sorry! This book is out of stock right now.");
+                Console.WriteLine("Sorry! This potion is out of stock right now.");
             }
             else
             {
@@ -257,7 +263,7 @@ namespace WelcomeItems
         {
             //See how many they want
             int stock;
-            Console.WriteLine("That book is in stock. We have {0} in stock.", num);
+            Console.WriteLine("That potion is in stock. We have {0} in stock.", num);
             Console.WriteLine("How many are being sold?:");
             stock = Convert.ToInt32(Console.ReadLine());
 
@@ -297,9 +303,16 @@ namespace WelcomeItems
             Console.WriteLine("We have {0} of {1} left in inventory.", Number, Name);
         }
 
-        public override void Info()
-        {
-            Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
+            public override void Info(int which)
+            {
+                if (which == 0)
+                {
+                    Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
+                }
+                else
+                {
+                    Console.WriteLine("{0} : {1}", Name, Number);
+                }
+            }
         }
-    }
 }
