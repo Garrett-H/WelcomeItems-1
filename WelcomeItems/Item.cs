@@ -63,8 +63,17 @@ namespace WelcomeItems
             }
             else            //if any to sell
             {
+                int temp = Number;
                 Number = SellingNumber(Number);
-                Console.WriteLine("{0} has been sold.", Name);
+                //if the number is less than before the sell was made
+                if (temp > Number)
+                {
+                    Console.WriteLine("{0} has been sold.", Name);
+                }
+                else
+                {
+                    Console.WriteLine("{0} has NOT been sold.", Name);
+                }
             }
             Console.WriteLine("Sell complete");
         }
@@ -109,8 +118,16 @@ namespace WelcomeItems
             }
             else
             {
-                Console.WriteLine("Ok removing {0} from the current inventory.", numOfLost);
-                Number -= numOfLost;
+                //checking if we have that many in stock
+                if (numOfLost > Number)
+                {
+                    Console.WriteLine("Sorry! Somehow you lost more than we own!");
+                }
+                else
+                {
+                    Console.WriteLine("Ok removing {0} from the current inventory.", numOfLost);
+                    Number -= numOfLost;
+                }
             }
             Console.WriteLine("We have {0} of {1} left in inventory.", Number, Name);
         }
@@ -162,8 +179,18 @@ namespace WelcomeItems
             }
             else             //if in stock
             {
+                int temp = Number;
                 Number = SellingNumber(Number);
-                Console.WriteLine("{0} has been sold.", Name);
+                //if the number is less than before the sell was made
+                if (temp > Number)
+                {
+                    Console.WriteLine("{0} has been sold.", Name);
+                }
+                else
+                {
+                    Console.WriteLine("{0} has NOT been sold.", Name);
+                }
+
             }
             Console.WriteLine("Sell complete");
         }
@@ -207,8 +234,16 @@ namespace WelcomeItems
             }
             else
             {
-                Console.WriteLine("Ok removing {0} from the current inventory.", numOfLost);
-                Number -= numOfLost;
+                //checking if we have that many in stock
+                if (numOfLost > Number)
+                {
+                    Console.WriteLine("Sorry! Somehow you lost more than we own!");
+                }
+                else
+                {
+                    Console.WriteLine("Ok removing {0} from the current inventory.", numOfLost);
+                    Number -= numOfLost;
+                }
             }
             //aftermath report
             Console.WriteLine("We have {0} of {1} left in inventory.", Number, Name);
@@ -261,8 +296,17 @@ namespace WelcomeItems
             }
             else             //if in stock
             {
+                int temp = Number;
                 Number = SellingNumber(Number);
-                Console.WriteLine("{0} has been sold.", Name);
+                //if the number is less than before the sell was made
+                if (temp > Number)
+                {
+                    Console.WriteLine("{0} has been sold.", Name);
+                }
+                else
+                {
+                    Console.WriteLine("{0} has NOT been sold.", Name);
+                }
             }
             Console.WriteLine("Sell complete");
         }
@@ -306,8 +350,16 @@ namespace WelcomeItems
             }
             else
             {
-                Console.WriteLine("Ok removing {0} from the current inventory.", numOfLost);
-                Number -= numOfLost;
+                //checking if we have that many in stock
+                if (numOfLost > Number)
+                {
+                    Console.WriteLine("Sorry! Somehow you lost more than we own!");
+                }
+                else
+                {
+                    Console.WriteLine("Ok removing {0} from the current inventory.", numOfLost);
+                    Number -= numOfLost;
+                }
             }
             //giving aftermath info
             Console.WriteLine("We have {0} of {1} left in inventory.", Number, Name);
