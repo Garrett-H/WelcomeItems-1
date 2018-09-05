@@ -37,48 +37,55 @@ namespace WelcomeItems
                             Console.WriteLine("1. a Book \n2. a Movie \n3. a Potion");
                             Console.Write("Enter an option: ");
                             option = Convert.ToInt32(Console.ReadLine());
-                            Console.WriteLine("");
+                            Console.WriteLine();
+
                             //adding item
-                            //add while for if not an option later
                             if (option == 1)       //Book
                             {
-                                //getting the arg info
+                                //1. getting the arg info
                                 Console.WriteLine("What is the title of the book: ");
                                 string title = Console.ReadLine();
                                 Console.WriteLine("How many copies are being added: ");
                                 int copies = Convert.ToInt32(Console.ReadLine());
 
-                                //making book
+                                //2. making book
                                 manager1.Add(new Book(title, copies));
+
+                                //3. print to user added info
                                 Console.WriteLine("\nID:({2}) - {0} copies of {1} has been added to the inventory", copies, title, manager1.Count());
                             }
                             else if (option == 2)  //Movie
                             {
-                                //getting the arg info
+                                //1. getting the arg info
                                 Console.WriteLine("What is the title of the movie: ");
                                 string title = Console.ReadLine();
                                 Console.WriteLine("How many discs are being added: ");
                                 int copies = Convert.ToInt32(Console.ReadLine());
 
-                                //making movie
+                                //2. making movie
                                 manager1.Add(new Movie(title, copies));
+
+                                //3. print to user added info
                                 Console.WriteLine("\nID:({2}) - {0} discs of {1} has been added to the inventory", copies, title, manager1.Count());
                             }
-                            else if (option == 3)
+                            else if (option == 3)  //Potions
                             {
+                                //1. getting the arg info
                                 Console.WriteLine("What is the type of potion is it: ");
                                 string title = Console.ReadLine();
                                 Console.WriteLine("How many bottles are being added: ");
                                 int copies = Convert.ToInt32(Console.ReadLine());
 
-                                //making potion
+                                //2. making potion
                                 manager1.Add(new Potions(title, copies));
+
+                                //3. print to user added info
                                 Console.WriteLine("\nID:({2}) - {0} bottles of {1} has been added to the inventory", copies, title, manager1.Count());
 
                             }
                             else
                             {
-                                Console.WriteLine("Sorry! that isn't an option. Exiting 'Adding portion' of inventory");
+                                Console.WriteLine("Sorry! that isn't an option.");
                             }
                         }
                         break;

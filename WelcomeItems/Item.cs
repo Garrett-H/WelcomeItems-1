@@ -8,13 +8,13 @@ namespace WelcomeItems
 {
     abstract class Item
     {
-        //private variables
+        //inherited variables
         protected string Name;
         protected string Type;
         protected int Number;
 
         //public functions
-        //contructors
+        //contructor
         public Item(string Title, string Typeset, int Supply)
         {
             Name = Title;
@@ -22,7 +22,7 @@ namespace WelcomeItems
             Number = Supply;
             Console.WriteLine("Parameter's set.");
         }
-        //functions
+        //to be overwriten functions
         public abstract void Restock();
         public abstract void Sell();
         public abstract void Lost();
@@ -31,6 +31,7 @@ namespace WelcomeItems
 
     class Book : Item
     {
+        //using inherited constructor
         public Book(string Title, int Supply) : base(Title, "Book", Supply) { }
 
         public override void Restock()
@@ -45,6 +46,7 @@ namespace WelcomeItems
             {
                 Number += restocking;
             }
+            //in case negetative
             else
             {
                 Console.WriteLine("Sorry that is not a positive number to add");
@@ -55,11 +57,11 @@ namespace WelcomeItems
         public override void Sell()
         {
             //1st check if any are in stock
-            if(Number < 1)
+            if(Number < 1)  //if NOT any to sell
             {
                 Console.WriteLine("Sorry! This book is out of stock right now.");
             }
-            else
+            else            //if any to sell
             {
                 Number = SellingNumber(Number);
                 Console.WriteLine("{0} has been sold.", Name);
@@ -95,6 +97,7 @@ namespace WelcomeItems
 
         public override void Lost()
         {
+            //see how many are lost
             int numOfLost;
             Console.WriteLine("Oh No! {0} has been lost!", Name);
             Console.Write("How many of {0} have been lost?:", Name);
@@ -114,11 +117,12 @@ namespace WelcomeItems
 
         public override void Info(int which)
         {
-            if(which == 0)
+            //2 ways to show info
+            if(which == 0)  //if action is to show info
             {
                 Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
             }
-            else
+            else            //if action is restocking
             {
                 Console.WriteLine("{0} : {1}", Name, Number);
             }
@@ -127,7 +131,7 @@ namespace WelcomeItems
 
     class Movie : Item
     {
-        //contructors
+        //using inherited contructor
         public Movie(string Title, int Supply) : base(Title, "Movie", Supply) { }
 
         public override void Restock()
@@ -152,11 +156,11 @@ namespace WelcomeItems
         public override void Sell()
         {
             //1st check if any are in stock
-            if (Number < 1)
+            if (Number < 1)  //if NOT in stock
             {
                 Console.WriteLine("Sorry! This movie is out of stock right now.");
             }
-            else
+            else             //if in stock
             {
                 Number = SellingNumber(Number);
                 Console.WriteLine("{0} has been sold.", Name);
@@ -191,6 +195,7 @@ namespace WelcomeItems
 
         public override void Lost()
         {
+            //check how many were lost
             int numOfLost;
             Console.WriteLine("Oh No! {0} has been lost!", Name);
             Console.Write("How many of {0} have been lost?:", Name);
@@ -205,16 +210,18 @@ namespace WelcomeItems
                 Console.WriteLine("Ok removing {0} from the current inventory.", numOfLost);
                 Number -= numOfLost;
             }
+            //aftermath report
             Console.WriteLine("We have {0} of {1} left in inventory.", Number, Name);
         }
 
         public override void Info(int which)
         {
-            if (which == 0)
+            //2 ways to show info
+            if (which == 0)  //if action is to show info
             {
                 Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
             }
-            else
+            else            //if action is restocking
             {
                 Console.WriteLine("{0} : {1}", Name, Number);
             }
@@ -222,6 +229,7 @@ namespace WelcomeItems
     }
     class Potions : Item
     {
+        //using inherited constructor
         public Potions(string Title, int Supply) : base(Title, "Potions", Supply) { }
 
         public override void Restock()
@@ -240,17 +248,18 @@ namespace WelcomeItems
             {
                 Console.WriteLine("Sorry that is not a positive number to add");
             }
+            //aftermath info
             Console.WriteLine("The item now has {0} bottles left in stock.", Number);
         }
 
         public override void Sell()
         {
             //1st check if any are in stock
-            if (Number < 1)
+            if (Number < 1)  //if NOT in stock
             {
                 Console.WriteLine("Sorry! This potion is out of stock right now.");
             }
-            else
+            else             //if in stock
             {
                 Number = SellingNumber(Number);
                 Console.WriteLine("{0} has been sold.", Name);
@@ -258,7 +267,6 @@ namespace WelcomeItems
             Console.WriteLine("Sell complete");
         }
 
-        //may use for all classes depending
         static int SellingNumber(int num)
         {
             //See how many they want
@@ -286,6 +294,7 @@ namespace WelcomeItems
 
         public override void Lost()
         {
+            //seeing how many are lost
             int numOfLost;
             Console.WriteLine("Oh No! {0} has been lost!", Name);
             Console.Write("How many of {0} have been lost?:", Name);
@@ -300,19 +309,21 @@ namespace WelcomeItems
                 Console.WriteLine("Ok removing {0} from the current inventory.", numOfLost);
                 Number -= numOfLost;
             }
+            //giving aftermath info
             Console.WriteLine("We have {0} of {1} left in inventory.", Number, Name);
         }
 
-            public override void Info(int which)
+        public override void Info(int which)
+        {
+            //2 ways to show info
+            if (which == 0)  //if action is to show info
             {
-                if (which == 0)
-                {
-                    Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
-                }
-                else
-                {
-                    Console.WriteLine("{0} : {1}", Name, Number);
-                }
+                Console.Write("{0} is a {1}.\nThere are {2} items in stock for it.\n", Name, Type, Number);
+            }
+            else            //if action is restocking
+            {
+                Console.WriteLine("{0} : {1}", Name, Number);
             }
         }
+    }
 }
