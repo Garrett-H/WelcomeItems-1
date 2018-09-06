@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace WelcomeItems
 {
@@ -47,12 +48,14 @@ namespace WelcomeItems
                                 string title = Console.ReadLine();
                                 Console.WriteLine("How many copies are being added: ");
                                 int copies = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("What is the price of each book: (Enter in D.CC)");
+                                double dollar = Convert.ToDouble(Console.ReadLine());
 
                                 //2. making book
-                                manager1.Add(new Book(title, copies));
+                                manager1.Add(new Book(title, copies, dollar));
 
                                 //3. print to user added info
-                                Console.WriteLine("\nID:({2}) - {0} copies of {1} has been added to the inventory", copies, title, manager1.Count());
+                                Console.WriteLine("\nID:({2}) - {0} copies of {1} at {3} has been added to the inventory", copies, title, manager1.Count(), dollar.ToString("C", CultureInfo.CurrentCulture));
                             }
                             else if (option == 2)  //Movie
                             {
@@ -61,12 +64,14 @@ namespace WelcomeItems
                                 string title = Console.ReadLine();
                                 Console.WriteLine("How many discs are being added: ");
                                 int copies = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("What is the price of each movie: (Enter in D.CC) ");
+                                double dollar = Convert.ToDouble(Console.ReadLine());
 
                                 //2. making movie
-                                manager1.Add(new Movie(title, copies));
+                                manager1.Add(new Movie(title, copies, dollar));
 
                                 //3. print to user added info
-                                Console.WriteLine("\nID:({2}) - {0} discs of {1} has been added to the inventory", copies, title, manager1.Count());
+                                Console.WriteLine("\nID:({2}) - {0} discs of {1} at ${3} been added to the inventory", copies, title, manager1.Count(), dollar.ToString("C", CultureInfo.CurrentCulture));
                             }
                             else if (option == 3)  //Potions
                             {
@@ -75,12 +80,13 @@ namespace WelcomeItems
                                 string title = Console.ReadLine();
                                 Console.WriteLine("How many bottles are being added: ");
                                 int copies = Convert.ToInt32(Console.ReadLine());
-
+                                Console.WriteLine("What is the price of each potion: (Enter in D.CC)");
+                                double dollar = Convert.ToDouble(Console.ReadLine());
                                 //2. making potion
-                                manager1.Add(new Potions(title, copies));
+                                manager1.Add(new Potions(title, copies, dollar));
 
                                 //3. print to user added info
-                                Console.WriteLine("\nID:({2}) - {0} bottles of {1} has been added to the inventory", copies, title, manager1.Count());
+                                Console.WriteLine("\nID:({2}) - {0} bottles of {1} at ${3} has been added to the inventory", copies, title, manager1.Count(), dollar.ToString("C", CultureInfo.CurrentCulture));
 
                             }
                             else
